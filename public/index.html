@@ -1,0 +1,153 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl"><head><meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>LaptopEgypt Market</title>
+<style>
+:root{--bg:#f4f6f8;--sf:#fff;--tx:#14213d;--mu:#5d6b82;--bd:#dde3ea;--ac:#e8a200;--tl:#0e7c7b;--rd:#c0392b;box-sizing:border-box;padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px);color-scheme:light}
+@media(prefers-color-scheme:dark){:root:not([data-theme="light"]){--bg:#0e1522;--sf:#172033;--tx:#eef2f8;--mu:#9aa8c0;--bd:#2a3750;--tl:#35c2bf;color-scheme:dark}}
+*{box-sizing:border-box}body{margin:0;background:var(--bg);color:var(--tx);font:15px/1.55 "Segoe UI",Tahoma,system-ui,sans-serif}
+button,input,select{font:inherit;color:inherit}button{cursor:pointer}a{color:inherit;text-decoration:none}
+:focus-visible{outline:2px solid var(--ac);outline-offset:2px}
+header{position:sticky;top:env(safe-area-inset-top,0px);z-index:20;background:#14213d;color:#fff;padding:8px 14px;display:flex;gap:8px;align-items:center;flex-wrap:wrap}
+.logo{display:flex;align-items:center;gap:8px;margin-inline-end:auto;font-weight:800;font-size:17px}.logo svg{width:44px;height:34px}.logo small{display:block;font-size:11px;color:#e8a200;font-weight:600;line-height:1}
+header input,header select{background:#fff;color:#14213d;border:0;border-radius:8px;padding:8px 10px}
+#q{flex:1 1 100%;order:9}
+.ib{background:#ffffff1f;border:0;color:#fff;border-radius:8px;padding:8px 11px}
+.cnt{background:var(--ac);color:#14213d;border-radius:99px;padding:0 7px;font-weight:700}
+.wrap{max-width:1200px;margin:0 auto;padding:14px}
+.hero{background:linear-gradient(120deg,#14213d,#0e5c63);color:#fff;border-radius:14px;padding:24px 20px}
+.hero h1{margin:0 0 6px;font-size:clamp(23px,5vw,38px);line-height:1.2}.hero p{margin:0 0 12px;color:#d7e3ee;max-width:50ch}
+.perks{display:flex;gap:8px;flex-wrap:wrap;margin-bottom:12px}.perks span{background:#ffffff1c;border-radius:99px;padding:3px 12px;font-size:13px}
+.btn{background:var(--ac);color:#14213d;border:0;border-radius:8px;padding:9px 14px;font-weight:700}
+.btn.o{background:transparent;border:2px solid var(--tl);color:var(--tl)}
+.tabs{display:flex;gap:8px;overflow-x:auto;padding:14px 0}.tabs button{white-space:nowrap;border:1px solid var(--bd);background:var(--sf);border-radius:99px;padding:7px 15px}.tabs button.on{background:var(--tx);color:var(--bg)}
+.layout{display:grid;grid-template-columns:230px 1fr;gap:16px}
+@media(max-width:800px){.layout{grid-template-columns:1fr}#flt{display:none}#flt.show{display:block}}
+#flt{background:var(--sf);border:1px solid var(--bd);border-radius:12px;padding:14px;align-self:start}
+#flt h4{margin:12px 0 4px;font-size:13px;color:var(--mu)}#flt h4:first-child{margin-top:0}#flt label{display:block;font-size:14px}#flt input[type=range]{width:100%}
+h2.sec{margin:18px 0 10px;font-size:20px;border-inline-start:5px solid var(--ac);padding-inline-start:10px}h2.sec small{color:var(--mu);font-weight:400;font-size:13px}
+.grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(230px,1fr));gap:14px}
+.card{background:var(--sf);border:1px solid var(--bd);border-radius:12px;overflow:hidden;display:flex;flex-direction:column}
+.im{background:#e7edf3;display:block;position:relative}.im svg{width:100%;display:block}
+.tag{position:absolute;top:8px;inset-inline-start:8px;background:var(--tl);color:#fff;border-radius:6px;font-size:12px;padding:2px 8px}.tag.u{background:var(--ac);color:#14213d}
+.cb{padding:12px;display:flex;flex-direction:column;gap:5px;flex:1}.br{font-weight:800;font-size:12px}.cb h3{margin:0;font-size:15px}
+.sp{font-size:13px;color:var(--mu);list-style:none;margin:0;padding:0}
+.pr{font-size:19px;font-weight:800;margin-top:auto}.pr s{font-size:13px;color:var(--mu);font-weight:400;margin-inline-start:6px}
+.row{display:flex;gap:8px}.row>*{flex:1}
+.bdg{display:inline-block;border-radius:6px;padding:1px 8px;font-size:12px;background:#e8a20026;color:#8a5d00;font-weight:600}
+.det{display:grid;grid-template-columns:1fr 1fr;gap:20px}@media(max-width:800px){.det{grid-template-columns:1fr}}
+.gal{background:var(--sf);border:1px solid var(--bd);border-radius:12px;padding:10px}.gal #big svg{width:100%}
+.th{display:flex;gap:8px;margin-top:8px}.th button{flex:1;border:2px solid var(--bd);border-radius:8px;background:#e7edf3;padding:0}.th button.on{border-color:var(--ac)}
+table{width:100%;border-collapse:collapse;background:var(--sf);border:1px solid var(--bd)}td,th{padding:8px 10px;border-bottom:1px solid var(--bd);text-align:start;font-size:14px}td:first-child{color:var(--mu)}
+.note{background:var(--sf);border-inline-start:4px solid var(--tl);padding:10px 14px;border-radius:8px;margin:12px 0}
+.ov{position:fixed;inset:0;background:#0009;z-index:40;display:none}.ov.show{display:block}
+#drw{position:fixed;top:0;bottom:0;inset-inline-end:0;width:min(400px,100%);background:var(--sf);z-index:50;transform:translateX(110%);transition:transform .25s;display:flex;flex-direction:column;padding:16px}
+[dir=rtl] #drw{transform:translateX(-110%)}#drw.show{transform:none!important}
+.ci{display:flex;gap:8px;align-items:center;border-bottom:1px solid var(--bd);padding:8px 0}.ci .t{flex:1;font-size:14px}.sm{background:var(--bg);border:0;border-radius:8px;padding:6px 11px}
+form.ck{display:grid;gap:10px}form.ck input,form.ck select{width:100%;padding:10px;border:1px solid var(--bd);border-radius:8px;background:var(--bg)}
+.modal{position:fixed;inset:0;z-index:60;display:none;align-items:center;justify-content:center;padding:14px;background:#0009}.modal.show{display:flex}
+.modal>div{background:var(--sf);border-radius:14px;padding:18px;width:min(560px,100%);max-height:90vh;overflow:auto}
+.pm{display:grid;gap:6px}.pm label{border:2px solid var(--bd);border-radius:8px;padding:8px;font-size:14px}
+.empty{padding:26px;text-align:center;color:var(--mu)}footer{text-align:center;color:var(--mu);padding:22px;font-size:13px}
+</style></head><body>
+<header>
+<a class="logo" href="#"><svg viewBox="0 0 88 68" aria-hidden="true"><rect x="12" y="4" width="64" height="44" rx="6" fill="#1b2f57" stroke="#e8a200" stroke-width="3"/><circle cx="58" cy="17" r="6" fill="#e8a200"/><path d="M20 42 40 16l12 16 6-8 12 18z" fill="#35c2bf"/><path d="M4 52h80l-6 12H10z" fill="#e8a200"/><rect x="34" y="55" width="20" height="3" rx="1.5" fill="#14213d"/></svg><span>LaptopEgypt<small data-i="mk">Market</small></span></a>
+<select id="cat"></select><button class="ib" id="lang">EN</button><button class="ib" id="acct" data-i="acct"></button><button class="ib" id="cartb"><span data-i="cart"></span> <span class="cnt" id="cc">0</span></button>
+<input id="q" type="search">
+</header>
+<main class="wrap" id="app"></main>
+<footer id="ft"></footer>
+<div class="ov" id="ov"></div><aside id="drw"></aside><div class="modal" id="mod"><div id="modc"></div></div>
+<script>
+const L={ar:{mk:"ماركت",acct:"حسابي",cart:"السلة",ph:"ابحث بالماركة أو الموديل أو المعالج…",all:"كل الأقسام",new:"لابتوبات جديدة",imp:"استيراد (مستعمل / مجدد)",gaming:"جيمنج",biz:"أعمال ومحطات عمل",budget:"اقتصادية",h1:"لابتوبات بضمان وبأسعار السوق المصري",hp:"استيراد مفحوص بدءًا من 7,500 جنيه، وجديد بكروت RTX وضمان سنتين.",pk1:"ضمان 3 شهور للاستيراد",pk2:"ضمان سنة أو أكثر للجديد",pk3:"تقسيط متاح",deals:"شاهد العروض",cond:"الحالة",any:"الكل",newo:"جديد",useo:"استيراد",brand:"الماركة",ser:"سلسلة المعالج",ram:"الرام",stt:"نوع التخزين",gpu:"كارت الشاشة",integ:"مدمج",ded:"منفصل",max:"أقصى سعر",rst:"إعادة ضبط",flt:"فلاتر",n:" لابتوب",none:"لا توجد نتائج. ارفع السعر الأقصى أو أعد ضبط الفلاتر.",add:"أضف للسلة",buy:"اشتر الآن",grade:"درجة ",bat:"البطارية ",back:"→ رجوع للمتجر",cpu:"المعالج",mem:"الذاكرة",sto:"التخزين",gc:"الكارت",scr:"الشاشة",ports:"المنافذ",cd:"الحالة",bt:"البطارية",wu:"ضمان المتجر 3 شهور. فحص كامل وتنظيف وتغيير معجون حراري.",wn:"ضمان سنة (أو أكثر حسب الموديل) مع استبدال خلال 14 يومًا.",inst:"أو تقريبًا {x} جنيه/شهر على 12 شهر بالتقسيط.",est:"السعر تقديري ويتأكد عند الطلب",cl:"سلتك",close:"إغلاق",emp:"السلة فاضية. أضف لابتوب للبدء.",sub:"المجموع الفرعي",ship:"الشحن",tot:"الإجمالي",co:"إتمام الطلب",name:"الاسم بالكامل",phone:"رقم الموبايل (01xxxxxxxxx)",gov:"المحافظة",addr:"الشارع والعمارة والشقة",cod:"الدفع عند الاستلام",ip:"إنستا باي",ec:"اتصالات كاش",place:"تأكيد الطلب",cancel:"إلغاء",ok:"تم تسجيل الطلب رقم ",pay:"حوّل {x} جنيه على الرقم {n} ثم ابعت صورة الإيصال على نفس الرقم.",thx:"شكرًا {n}، هنكلمك على {p} لتأكيد التوصيل إلى {g}.",keep:"كمل التسوق",adm:"لوحة البائع",code:"كود الدخول",login:"دخول",ord:"الطلبات",prod:"المنتجات",addp:"إضافة منتج",del:"حذف",save:"حفظ",demo:"نسخة تجريبية: البيانات محفوظة في متصفحك فقط.",ft:"LaptopEgypt Market · نسخة تجريبية · مصر",sh:"الشحن حسب المحافظة",email:"البريد",pw:"كلمة المرور",srcn:"الأسعار مأخوذة من متاجر مصرية منشورة وقت البناء وقد تتغير."},
+en:{mk:"Market",acct:"Account",cart:"Cart",ph:"Search brand, model, CPU…",all:"All categories",new:"New laptops",imp:"Imported (used / refurbished)",gaming:"Gaming",biz:"Business & workstations",budget:"Budget",h1:"Warranty-backed laptops at Egyptian market prices",hp:"Inspected imports from 7,500 EGP, plus new RTX laptops with up to 2-year warranty.",pk1:"3-month warranty on imports",pk2:"1+ year warranty on new",pk3:"Installments available",deals:"See top deals",cond:"Condition",any:"All",newo:"New",useo:"Imported",brand:"Brand",ser:"Processor series",ram:"RAM",stt:"Storage type",gpu:"Graphics",integ:"Integrated",ded:"Dedicated",max:"Max price",rst:"Reset",flt:"Filters",n:" laptops",none:"No matches. Raise the max price or reset the filters.",add:"Add to cart",buy:"Buy now",grade:"Grade ",bat:"Battery ",back:"← Back to store",cpu:"Processor",mem:"Memory",sto:"Storage",gc:"Graphics",scr:"Screen",ports:"Ports",cd:"Condition",bt:"Battery",wu:"3-month store warranty. Full inspection, cleaning, fresh thermal paste.",wn:"1-year warranty (more on some models) with 14-day replacement.",inst:"Or about {x} EGP/month over 12 months.",est:"Estimated price, confirmed at order",cl:"Your cart",close:"Close",emp:"Your cart is empty. Add a laptop to start.",sub:"Subtotal",ship:"Shipping",tot:"Total",co:"Checkout",name:"Full name",phone:"Mobile (01xxxxxxxxx)",gov:"Governorate",addr:"Street, building, apartment",cod:"Cash on Delivery",ip:"InstaPay",ec:"Etisalat Cash",place:"Place order",cancel:"Cancel",ok:"Order placed: ",pay:"Send {x} EGP to {n}, then message the receipt to the same number.",thx:"Thanks {n}. We'll call {p} to confirm delivery to {g}.",keep:"Keep shopping",adm:"Seller panel",code:"Access code",login:"Sign in",ord:"Orders",prod:"Products",addp:"Add product",del:"Delete",save:"Save",demo:"Demo: data is saved in this browser only.",ft:"LaptopEgypt Market · demo store · Egypt",sh:"Shipping by governorate",email:"Email",pw:"Password",srcn:"Prices taken from published Egyptian stores at build time and may change."}};
+const GV={Cairo:["القاهرة",50],Giza:["الجيزة",50],Alexandria:["الإسكندرية",50],Qalyubia:["القليوبية",50],Dakahlia:["الدقهلية",50],Sharqia:["الشرقية",50],Gharbia:["الغربية",50],Monufia:["المنوفية",50],Beheira:["البحيرة",50],"Kafr El Sheikh":["كفر الشيخ",50],Damietta:["دمياط",50],"Port Said":["بورسعيد",50],Ismailia:["الإسماعيلية",50],Suez:["السويس",50],Fayoum:["الفيوم",200],"Beni Suef":["بني سويف",200],Minya:["المنيا",200],Assiut:["أسيوط",200],Sohag:["سوهاج",200],Qena:["قنا",200],Luxor:["الأقصر",200],Aswan:["أسوان",200],"New Valley":["الوادي الجديد",200],Matrouh:["مطروح",150],"North Sinai":["شمال سيناء",150],"South Sinai":["جنوب سيناء",150],"Red Sea":["البحر الأحمر",150]};
+let lg="ar";const t=k=>L[lg][k]||k;
+let P=[],cart=[],tok="",F={};
+const rd=(k,d)=>{try{return JSON.parse(localStorage.getItem(k))||d}catch(e){return d}},wr=(k,v)=>{try{localStorage.setItem(k,JSON.stringify(v))}catch(e){}};
+cart=rd("lem_c",[]);
+const ZERO=()=>({cond:"",brands:[],ser:[],ram:0,st:"",gpu:"",max:130000,q:"",cat:""});F=ZERO();
+const BC={Dell:"#007db8",HP:"#0096d6",Lenovo:"#e2231a",ASUS:"#00539b",Apple:"#555"},$=s=>document.querySelector(s);
+const egp=n=>n.toLocaleString("en-US")+(lg==="ar"?" جنيه":" EGP"),stoT=p=>(p.sto>=1000?p.sto/1000+"TB":p.sto+"GB")+" "+p.st;
+const pr=p=>P.find(x=>x.id==p),sum=()=>cart.reduce((a,c)=>a+c.q*pr(c.id).p,0);
+const sv=()=>{wr("lem_c",cart);$("#cc").textContent=cart.reduce((a,c)=>a+c.q,0)};
+function svg(p,v){if(p.imgs)return `<img src="/img/${p.id}/${Math.min(v,p.imgs)-1}" alt="" loading="lazy" style="width:100%;aspect-ratio:16/10;object-fit:cover;display:block">`;const c=BC[p.b]||"#444",d=p.c==="new"?"#1c2a44":"#3a4252",f=`<rect x="95" y="40" width="210" height="125" rx="6" fill="${d}"/>`;
+const s=v===1?f+`<rect x="104" y="48" width="192" height="108" fill="${c}"/><text x="200" y="108" fill="#fff" font-size="20" font-weight="700" text-anchor="middle">${p.b}</text>`:v===2?f+`<rect x="104" y="48" width="192" height="108" fill="#0d1624"/><circle cx="200" cy="102" r="26" fill="none" stroke="${c}" stroke-width="5"/>`:f+`<rect x="104" y="48" width="192" height="108" fill="#d9e2ec"/>`+Array.from({length:12},(_,i)=>`<rect x="${112+(i%6)*30}" y="${58+(i>5)*34}" width="24" height="26" rx="3" fill="${c}" opacity="${.3+(i%4)*.18}"/>`).join("");
+return`<svg viewBox="0 0 400 230" role="img" aria-label="${p.b} ${p.n}">${s}<path d="M70 168h260l22 18H48z" fill="#9aa5b4"/></svg>`}
+function filt(){return P.filter(p=>(!F.cat||p.cats.includes(F.cat)||(F.cat==="new"&&p.c==="new")||(F.cat==="imp"&&p.c==="imp"))&&(!F.cond||p.c===F.cond)&&(!F.brands.length||F.brands.includes(p.b))&&(!F.ser.length||F.ser.includes(p.s))&&(!F.ram||p.ram>=F.ram)&&(!F.st||p.st===F.st)&&(F.gpu===""||p.ded==F.gpu)&&p.p<=F.max&&(!F.q||(p.b+p.n+p.cpu+p.gpu).toLowerCase().includes(F.q.toLowerCase())))}
+const chk=(k,v,l)=>`<label><input type=checkbox data-k="${k}" value="${v}" ${F[k].includes(v)?"checked":""}> ${l||v}</label>`,rad=(k,v,l)=>`<label><input type=radio name="${k}" data-r="${k}" value="${v}" ${String(F[k])===String(v)?"checked":""}> ${l}</label>`;
+const btns=p=>p.so?`<div class="row"><button class="btn" disabled style="opacity:.6">${lg==="ar"?"نفدت الكمية":"Sold out"}</button></div>`:`<div class="row"><button class="btn o" data-add="${p.id}">${t("add")}</button><button class="btn" data-buy="${p.id}">${t("buy")}</button></div>`;
+function card(p){const u=p.c==="imp";return`<article class="card"><a class="im" href="#p${p.id}">${svg(p,1)}<span class="tag ${u?"u":""}">${u?t("grade")+p.g:t("newo")}</span></a><div class="cb"><span class="br" style="color:${BC[p.b]||"inherit"}">${p.b.toUpperCase()}</span><h3><a href="#p${p.id}">${p.b} ${p.n}</a></h3><ul class="sp"><li>${p.cpu}</li><li>${p.ram}GB RAM · ${stoT(p)}</li><li>${p.gpu}</li>${u?`<li><span class="bdg">${t("bat")}${p.bat}%</span></li>`:""}</ul><div class="pr">${egp(p.p)}${p.old?`<s>${egp(p.old)}</s>`:""}</div>${p.est?`<small style="color:var(--mu)">${t("est")}</small>`:""}${btns(p)}</div></article>`}
+function ui(){document.documentElement.lang=lg;document.documentElement.dir=lg==="ar"?"rtl":"ltr";$("#lang").textContent=lg==="ar"?"EN":"عربي";$("#q").placeholder=t("ph");
+document.querySelectorAll("[data-i]").forEach(e=>e.textContent=t(e.dataset.i));$("#ft").innerHTML=t("ft")+"<br>"+t("srcn");
+$("#cat").innerHTML=[["","all"],["new","new"],["imp","imp"],["gaming","gaming"],["biz","biz"],["budget","budget"]].map(a=>`<option value="${a[0]}">${t(a[1])}</option>`).join("");$("#cat").value=F.cat}
+function home(){ui();const T=[["","all"],["new","new"],["imp","imp"],["gaming","gaming"],["biz","biz"],["budget","budget"]];
+$("#app").innerHTML=`<section class="hero"><h1>${t("h1")}</h1><p>${t("hp")}</p><div class="perks"><span>${t("pk1")}</span><span>${t("pk2")}</span><span>${t("pk3")}</span></div><button class="btn" id="deals">${t("deals")}</button></section>
+<nav class="tabs">${T.map(a=>`<button data-tab="${a[0]}" class="${F.cat===a[0]?"on":""}">${t(a[1])}</button>`).join("")}</nav>
+<button class="btn o" id="ftg" style="margin-bottom:10px">${t("flt")}</button>
+<div class="layout"><aside id="flt"><h4>${t("cond")}</h4>${rad("cond","",t("any"))}${rad("cond","new",t("newo"))}${rad("cond","imp",t("useo"))}<h4>${t("brand")}</h4>${["Dell","HP","Lenovo","ASUS"].map(b=>chk("brands",b)).join("")}<h4>${t("ser")}</h4>${["i5","i7","Ryzen"].map(b=>chk("ser",b,b==="Ryzen"?"Ryzen":"Core "+b)).join("")}<h4>${t("ram")}</h4>${rad("ram",0,t("any"))}${rad("ram",8,"8GB+")}${rad("ram",16,"16GB+")}<h4>${t("stt")}</h4>${rad("st","",t("any"))}${rad("st","SSD","SSD")}${rad("st","HDD","HDD")}<h4>${t("gpu")}</h4>${rad("gpu","",t("any"))}${rad("gpu",0,t("integ"))}${rad("gpu",1,t("ded"))}<h4>${t("max")}: <span id="mp">${egp(F.max)}</span></h4><input type=range id="rg" min="7000" max="130000" step="1000" value="${F.max}"><button class="btn o" id="rst" style="margin-top:10px;width:100%">${t("rst")}</button></aside><div id="res"></div></div>`;res()}
+function res(){const r=filt(),n=r.filter(p=>p.c==="new"),u=r.filter(p=>p.c==="imp"),sec=(h,a)=>a.length?`<h2 class="sec" id="s-${h}">${t(h)} <small>${a.length}${t("n")}</small></h2><div class="grid">${a.map(card).join("")}</div>`:"";
+$("#res").innerHTML=r.length?sec("new",n)+sec("imp",u):`<div class="empty">${t("none")}</div>`}
+function detail(id){const p=pr(id);if(!p)return home();ui();const u=p.c==="imp";
+const rows=[[t("cpu"),p.cpu],[t("mem"),p.ram+"GB"],[t("sto"),stoT(p)],[t("gc"),p.gpu],[t("scr"),p.scr],[t("ports"),"USB-C, USB-A, HDMI"+(u?"":", 3.5mm")],[t("cd"),u?t("grade")+p.g:t("newo")],[t("bt"),u?p.bat+"%":"100%"]];
+$("#app").innerHTML=`<p><a href="#">${t("back")}</a></p><div class="det"><div class="gal"><div id="big">${svg(p,1)}</div><div class="th">${Array.from({length:p.imgs||3},(_,i)=>i+1).map(i=>`<button data-v="${i}" class="${i===1?"on":""}">${svg(p,i)}</button>`).join("")}</div></div><div><span class="br" style="color:${BC[p.b]||"inherit"}">${p.b.toUpperCase()}</span><h1 style="margin:0">${p.n}</h1><div class="pr" style="font-size:28px">${egp(p.p)}${p.old?`<s>${egp(p.old)}</s>`:""}</div>${p.est?`<small>${t("est")}</small>`:""}<p style="color:var(--mu)">${t("inst").replace("{x}",(Math.ceil(p.p/120)*10).toLocaleString("en-US"))}</p>${btns(p)}<div class="note">${u?t("wu"):t("wn")}</div><table>${rows.map(r=>`<tr><td>${r[0]}</td><td>${r[1]}</td></tr>`).join("")}</table></div></div>`;
+document.querySelectorAll("[data-v]").forEach(b=>b.onclick=()=>{$("#big").innerHTML=svg(p,+b.dataset.v);document.querySelectorAll("[data-v]").forEach(x=>x.classList.toggle("on",x===b))});scrollTo(0,0)}
+const route=()=>{const h=location.hash;h.startsWith("#p")?detail(h.slice(2)):home()};
+function drawer(){$("#drw").innerHTML=`<div style="display:flex;justify-content:space-between"><h2 style="margin:0">${t("cl")}</h2><button class="sm" id="cx">${t("close")}</button></div><div style="flex:1;overflow:auto">${cart.length?cart.map(c=>{const p=pr(c.id);return`<div class="ci"><div class="t"><b>${p.b} ${p.n}</b><br>${egp(p.p)} × ${c.q}</div><button class="sm" data-m="${p.id}">−</button><button class="sm" data-pl="${p.id}">+</button><button class="sm" data-rm="${p.id}" style="color:var(--rd)">×</button></div>`}).join(""):`<div class="empty">${t("emp")}</div>`}</div><div class="pr" style="display:flex;justify-content:space-between"><span>${t("sub")}</span><span>${egp(sum())}</span></div><button class="btn" id="co" ${cart.length?"":"disabled"} style="margin-top:10px">${t("co")}</button>`;
+$("#cx").onclick=()=>op(0);if($("#co"))$("#co").onclick=checkout}
+function op(v){$("#drw").classList.toggle("show",!!v);$("#ov").classList.toggle("show",!!v);if(v)drawer()}
+function add(id,n=1){const c=cart.find(x=>x.id==id);c?c.q+=n:cart.push({id:+id,q:1});cart=cart.filter(x=>x.q>0);sv()}
+const M=h=>{$("#modc").innerHTML=h;$("#mod").classList.add("show")},X=()=>$("#mod").classList.remove("show");
+function checkout(){op(0);const ao=Object.keys(GV).map(k=>`<option value="${k}">${lg==="ar"?GV[k][0]:k} (+${GV[k][1]})</option>`).join("");
+M(`<h2 style="margin-top:0">${t("co")}</h2><form class="ck" id="cf"><input name="n" placeholder="${t("name")}" required><input name="ph" type="tel" placeholder="${t("phone")}" pattern="01[0-9]{9}" required><select name="g" id="gs" required><option value="">${t("gov")}</option>${ao}</select><input name="a" placeholder="${t("addr")}" required><div class="pm"><label><input type=radio name="pay" value="cod" checked> ${t("cod")}</label><label><input type=radio name="pay" value="InstaPay"> ${t("ip")}</label><label><input type=radio name="pay" value="Etisalat Cash"> ${t("ec")}</label></div><div id="tt"></div><button class="btn">${t("place")}</button><button class="btn o" type="button" id="cn">${t("cancel")}</button></form>`);
+const tt=()=>{const g=$("#gs").value,s=g?GV[g][1]:0;$("#tt").innerHTML=`<table><tr><td>${t("sub")}</td><td>${egp(sum())}</td></tr><tr><td>${t("ship")}</td><td>${g?egp(s):"—"}</td></tr><tr><td><b>${t("tot")}</b></td><td><b>${egp(sum()+s)}</b></td></tr></table>`};tt();$("#gs").onchange=tt;$("#cn").onclick=X;
+$("#cf").onsubmit=async e=>{e.preventDefault();const f=new FormData(e.target),py=f.get("pay");let no,tot;try{({no,tot}=await api("/api/orders",{method:"POST",body:{n:f.get("n"),ph:f.get("ph"),g:f.get("g"),a:f.get("a"),pay:py,items:cart.map(c=>({id:c.id,q:c.q}))}}))}catch(x){alert(lg==="ar"?"حصل خطأ، حاول تاني":"Error, try again");return}
+M(`<h2 style="margin-top:0">${t("ok")}${no}</h2><p>${t("thx").replace("{n}",f.get("n")).replace("{p}",f.get("ph")).replace("{g}",lg==="ar"?GV[f.get("g")][0]:f.get("g"))}</p><p>${t("tot")}: <b>${egp(tot)}</b></p>${py!=="cod"?`<p>${t("pay").replace("{x}",tot.toLocaleString("en-US")).replace("{n}","01142585690")}</p>`:""}<button class="btn" id="dn">${t("keep")}</button>`);cart=[];sv();$("#dn").onclick=X}}
+async function api(u,o={}){const h={"Content-Type":"application/json"};if(tok)h.Authorization="Bearer "+tok;const r=await fetch(u,{...o,headers:h,body:o.body?JSON.stringify(o.body):undefined});if(!r.ok)throw new Error(r.status);return r.json()}
+let ed=null;
+const E=s=>String(s??"").replace(/[&<>"']/g,c=>({"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;","'":"&#39;"}[c]));
+const rz=f=>new Promise(res=>{const r=new FileReader();r.onload=()=>{const i=new Image();i.onload=()=>{const k=Math.min(1,900/Math.max(i.width,i.height)),c=document.createElement("canvas");c.width=Math.round(i.width*k);c.height=Math.round(i.height*k);c.getContext("2d").drawImage(i,0,0,c.width,c.height);res(c.toDataURL("image/jpeg",.75))};i.src=r.result};r.readAsDataURL(f)});
+async function admin(){const ar=lg==="ar";if(!tok){M(`<h2 style="margin-top:0">${t("adm")}</h2><form class="ck" id="lf"><input type=email placeholder="${t("email")}" required><input type=password placeholder="${t("pw")}" required><button class="btn">${t("login")}</button></form>`);
+$("#lf").onsubmit=async e=>{e.preventDefault();try{tok=(await api("/api/admin/login",{method:"POST",body:{email:e.target[0].value,password:e.target[1].value}})).token;admin()}catch(x){e.target[1].value="";alert(ar?"بيانات الدخول غير صحيحة":"Wrong login")}};return}
+let O=[];try{O=await api("/api/admin/orders")}catch(x){tok="";return admin()}
+const x=P.find(p=>p.id==ed)||{},sel=(v,o)=>v===o?" selected":"",ck=c=>(x.cats||[]).includes(c)?" checked":"";
+M(`<h2 style="margin-top:0">${t("adm")}</h2><h3>${ed?"✎ "+E(x.b+" "+x.n):t("addp")}</h3><form class="ck" id="af">
+<input name="b" placeholder="${ar?"الماركة (Dell, HP…)":"Brand (Dell, HP…)"}" value="${E(x.b)}" required>
+<input name="n" placeholder="${ar?"الموديل":"Model"}" value="${E(x.n)}" required>
+<select name="c"><option value="new"${sel(x.c,"new")}>${t("newo")}</option><option value="imp"${sel(x.c,"imp")}>${t("useo")}</option></select>
+<input name="cpu" placeholder="${ar?"المعالج (Core i5-1235U)":"CPU (Core i5-1235U)"}" value="${E(x.cpu)}" required>
+<input name="ram" type=number min=1 placeholder="RAM GB" value="${E(x.ram)}" required>
+<input name="sto" type=number min=1 placeholder="${ar?"التخزين GB":"Storage GB"}" value="${E(x.sto)}" required>
+<select name="st"><option${sel(x.st,"SSD")}>SSD</option><option${sel(x.st,"HDD")}>HDD</option></select>
+<input name="gpu" placeholder="${ar?"كارت الشاشة":"GPU"}" value="${E(x.gpu)}" required>
+<input name="scr" placeholder="${ar?"الشاشة (15.6 FHD 144Hz)":"Screen (15.6 FHD 144Hz)"}" value="${E(x.scr)}">
+<input name="p" type=number min=1 placeholder="${ar?"السعر بالجنيه":"Price EGP"}" value="${E(x.p)}" required>
+<input name="old" type=number min=0 placeholder="${ar?"السعر قبل الخصم (اختياري)":"Old price (optional)"}" value="${E(x.old||"")}">
+<select name="g"><option${sel(x.g,"A")}>A</option><option${sel(x.g,"B")}>B</option><option${sel(x.g,"C")}>C</option></select>
+<input name="bat" type=number min=0 max=100 placeholder="${ar?"البطارية % (للاستيراد)":"Battery % (imported)"}" value="${E(x.bat||"")}">
+<div><label><input type=checkbox name="cat" value="gaming"${ck("gaming")}> ${t("gaming")}</label> <label><input type=checkbox name="cat" value="biz"${ck("biz")}> ${t("biz")}</label> <label><input type=checkbox name="cat" value="budget"${ck("budget")}> ${t("budget")}</label></div>
+<label>${ar?"صور (حتى 3، تستبدل القديمة)":"Photos (up to 3, replace old ones)"}<input name="files" type=file accept="image/*" multiple></label>
+<button class="btn">${t("save")}</button>${ed?`<button class="btn o" type="button" id="ce">${t("cancel")}</button>`:""}</form>
+<h3>${t("prod")} (${P.length})</h3><div>${P.map(p=>`<div class="ci"><div class="t">${E(p.b)} ${E(p.n)} · ${egp(p.p)}${p.so?" · "+(ar?"نفدت":"Sold out"):""}</div><button class="sm" data-edit="${p.id}">${ar?"تعديل":"Edit"}</button><button class="sm" data-so="${p.id}">${p.so?(ar?"متاح":"In stock"):(ar?"نفدت":"Sold out")}</button><button class="sm" data-del="${p.id}" style="color:var(--rd)">${t("del")}</button></div>`).join("")}</div>
+<h3>${t("ord")} (${O.length})</h3><div style="overflow:auto"><table>${O.map(o=>`<tr><td>${E(o.no)}<br>${E(new Date(o.created).toLocaleString())}</td><td>${E(o.name)} · ${E(o.phone)}<br>${E(o.gov)}: ${E(o.addr)}<br>${E(o.items)}</td><td>${egp(o.total)}<br>${E(o.pay)}</td></tr>`).join("")||"<tr><td>—</td></tr>"}</table></div><button class="btn o" id="cn" style="margin-top:10px;width:100%">${t("close")}</button>`);
+$("#modc").parentElement.scrollTop=0;$("#cn").onclick=()=>{ed=null;X()};if($("#ce"))$("#ce").onclick=()=>{ed=null;admin()};
+$("#af").onsubmit=async e=>{e.preventDefault();const f=Object.fromEntries(new FormData(e.target)),cats=[...e.target.querySelectorAll("[name=cat]:checked")].map(i=>i.value),fl=[...e.target.files.files].slice(0,3);
+const images=fl.length?await Promise.all(fl.map(rz)):undefined;
+const body={b:f.b,n:f.n,c:f.c,cpu:f.cpu,s:(f.cpu.match(/Ultra|i[3579]|Ryzen|Apple/)||["i5"])[0],ram:+f.ram,sto:+f.sto,st:f.st,gpu:f.gpu,ded:/RTX|GTX|Quadro|Radeon RX/i.test(f.gpu)?1:0,p:+f.p,old:+f.old||0,g:f.c==="imp"?f.g:"",bat:f.c==="imp"?+f.bat||0:0,scr:f.scr||"—",cats,images};
+try{await api(ed?"/api/admin/products/"+ed:"/api/admin/products",{method:ed?"PUT":"POST",body});ed=null;P=await api("/api/products");route();admin()}catch(x){alert(ar?"حصل خطأ، راجع البيانات":"Error, check the data")}}}
+
+document.addEventListener("click",e=>{const a=e.target;
+if(a.dataset.add){add(a.dataset.add);op(1)}else if(a.dataset.buy){cart=[{id:+a.dataset.buy,q:1}];sv();checkout()}
+else if(a.dataset.pl){add(a.dataset.pl);drawer()}else if(a.dataset.m){add(a.dataset.m,-1);drawer()}else if(a.dataset.rm){cart=cart.filter(c=>c.id!=a.dataset.rm);sv();drawer()}
+else if(a.dataset.del){if(confirm(lg==="ar"?"متأكد إنك عايز تحذف المنتج ده؟":"Delete this product?"))api("/api/admin/products/"+a.dataset.del,{method:"DELETE"}).then(()=>api("/api/products")).then(r=>{P=r;route();admin()})}
+else if(a.dataset.edit){ed=+a.dataset.edit;admin()}
+else if(a.dataset.so){const p=P.find(x=>x.id==a.dataset.so);api("/api/admin/products/"+p.id,{method:"PUT",body:{so:p.so?0:1}}).then(()=>api("/api/products")).then(r=>{P=r;route();admin()})}
+else if(a.dataset.tab!==undefined){F.cat=a.dataset.tab;location.hash?location.hash="":home()}
+else if(a.id==="deals"){F=ZERO();F.max=60000;home();$("#flt").scrollIntoView()}
+else if(a.id==="rst"){F=ZERO();$("#q").value="";home()}else if(a.id==="ftg")$("#flt").classList.toggle("show");
+else if(a===$("#ov"))op(0);else if(a===$("#mod"))X()});
+document.addEventListener("change",e=>{const a=e.target;if(a.dataset.k){const k=a.dataset.k;F[k]=a.checked?F[k].concat(a.value):F[k].filter(v=>v!==a.value);res()}else if(a.dataset.r){F[a.dataset.r]=a.dataset.r==="ram"?+a.value:a.value;res()}else if(a.id==="cat"){F.cat=a.value;location.hash?location.hash="":home()}});
+document.addEventListener("input",e=>{if(e.target.id==="rg"){F.max=+e.target.value;$("#mp").textContent=egp(F.max);res()}else if(e.target.id==="q"){F.q=e.target.value;location.hash?location.hash="":res()}});
+$("#cartb").onclick=()=>op(1);$("#acct").onclick=admin;$("#lang").onclick=()=>{lg=lg==="ar"?"en":"ar";wr("lem_l",lg);route()};
+addEventListener("hashchange",route);lg=rd("lem_l","ar");sv();api("/api/products").then(r=>{P=r;route()}).catch(()=>{$("#app").innerHTML="<p class=empty>Server error. Try again later.</p>"});
+</script></body></html>

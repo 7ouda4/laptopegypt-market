@@ -1,0 +1,58 @@
+const express=require("express"),{Pool}=require("pg"),crypto=require("crypto"),path=require("path");
+const {DATABASE_URL,ADMIN_EMAIL,ADMIN_PASSWORD,SECRET}=process.env;
+if(!DATABASE_URL||!ADMIN_EMAIL||!ADMIN_PASSWORD||!SECRET){console.error("Missing env vars");process.exit(1)}
+const db=new Pool({connectionString:DATABASE_URL,ssl:/localhost|127\.0\.0\.1/.test(DATABASE_URL)?false:{rejectUnauthorized:false}});
+const app=express();app.set("trust proxy",1);app.use((q,r,n)=>q.path.startsWith("/api/admin/products")?n():express.json({limit:"50kb"})(q,r,n));
+app.use(express.static(path.join(__dirname,"public")));
+const h=s=>crypto.createHash("sha256").update(String(s)).digest();
+const eq=(a,b)=>crypto.timingSafeEqual(h(a),h(b));
+const mac=e=>crypto.createHmac("sha256",SECRET).update(String(e)).digest("hex");
+const sign=()=>{const e=Date.now()+12*36e5;return e+"."+mac(e)};
+const valid=t=>{const[e,s]=String(t||"").split(".");return !!(e&&s&&+e>Date.now()&&eq(s,mac(e)))};
+const auth=(q,r,n)=>valid((q.headers.authorization||"").replace("Bearer ",""))?n():r.status(401).json({error:"unauthorized"});
+app.use("/api/admin/products",auth,express.json({limit:"4mb"}));
+const tries={};
+app.post("/api/admin/login",(q,r)=>{const t=tries[q.ip]||{n:0,u:0};if(t.n>=5&&Date.now()<t.u)return r.status(429).json({error:"wait"});
+const{email,password}=q.body||{};if(eq(email,ADMIN_EMAIL)&&eq(password,ADMIN_PASSWORD)){delete tries[q.ip];return r.json({token:sign()})}
+tries[q.ip]={n:t.n+1,u:Date.now()+15*6e4};r.status(401).json({error:"bad"})});
+const FEE={};
+["Cairo","Giza","Alexandria","Qalyubia","Dakahlia","Sharqia","Gharbia","Monufia","Beheira","Kafr El Sheikh","Damietta","Port Said","Ismailia","Suez"].forEach(g=>FEE[g]=50);
+["Fayoum","Beni Suef","Minya","Assiut","Sohag","Qena","Luxor","Aswan","New Valley"].forEach(g=>FEE[g]=200);
+["Matrouh","North Sinai","South Sinai","Red Sea"].forEach(g=>FEE[g]=150);
+const T=["b","n","cpu","s","gpu","st","g","scr"],N=["ram","sto","p","old","bat"];
+const clean=b=>{const d={};T.forEach(k=>{if(b[k]!==undefined)d[k]=String(b[k]).replace(/[<>]/g,"").slice(0,120)});
+N.forEach(k=>{if(b[k]!==undefined)d[k]=Math.max(0,Math.round(+b[k]||0))});
+if(b.c!==undefined)d.c=b.c==="imp"?"imp":"new";
+["ded","est","so"].forEach(k=>{if(b[k]!==undefined)d[k]=b[k]?1:0});
+if(Array.isArray(b.cats))d.cats=b.cats.filter(c=>["gaming","biz","budget"].includes(c));
+return d};
+const saveImgs=async(id,arr)=>{if(!Array.isArray(arr))return;
+const ok=arr.filter(s=>typeof s==="string"&&s.length<6e5&&/^data:image\/jpeg;base64,[A-Za-z0-9+/=]+$/.test(s)).slice(0,3);
+await db.query("delete from images where pid=$1",[id]);
+for(let i=0;i<ok.length;i++)await db.query("insert into images(pid,idx,data) values($1,$2,$3)",[id,i,Buffer.from(ok[i].split(",")[1],"base64")]);
+await db.query("update products set data=jsonb_set(data,'{imgs}',to_jsonb($2::int)) where id=$1",[id,ok.length])};
+app.get("/img/:id/:i",async(q,r)=>{const x=await db.query("select data from images where pid=$1 and idx=$2",[+q.params.id,+q.params.i]);
+if(!x.rows.length)return r.sendStatus(404);r.set("Cache-Control","public,max-age=300").type("jpeg").send(x.rows[0].data)});
+app.get("/api/products",async(q,r)=>{const x=await db.query("select id,data from products order by id");r.json(x.rows.map(o=>({...o.data,id:o.id})))});
+app.post("/api/admin/products",async(q,r)=>{const b=q.body||{},d=clean(b);
+if(!d.b||!d.n||!(d.p>0)||!d.cpu||!d.ram||!d.sto)return r.status(400).json({error:"bad"});
+d.c=d.c||"new";d.cats=d.cats||[];d.ded=d.ded||0;d.est=d.est||0;d.so=0;d.old=d.old||0;d.bat=d.bat||0;d.scr=d.scr||"—";d.st=d.st||"SSD";d.s=d.s||"i5";d.g=d.c==="imp"?(d.g||"A"):"";
+const x=await db.query("insert into products(data) values($1) returning id",[d]);await saveImgs(x.rows[0].id,b.images);r.json({id:x.rows[0].id})});
+app.put("/api/admin/products/:id",async(q,r)=>{const id=+q.params.id,b=q.body||{};
+const x=await db.query("select data from products where id=$1",[id]);if(!x.rows.length)return r.sendStatus(404);
+const d={...x.rows[0].data,...clean(b)};if(!d.b||!d.n||!(d.p>0))return r.status(400).json({error:"bad"});
+await db.query("update products set data=$2 where id=$1",[id,d]);if(Array.isArray(b.images))await saveImgs(id,b.images);r.json({ok:1})});
+app.delete("/api/admin/products/:id",async(q,r)=>{await db.query("delete from images where pid=$1",[+q.params.id]);await db.query("delete from products where id=$1",[+q.params.id]);r.json({ok:1})});
+app.post("/api/orders",async(q,r)=>{const b=q.body||{},fee=FEE[b.g];
+if(fee===undefined||!/^01[0-9]{9}$/.test(b.ph||"")||!b.n||!b.a||!["cod","InstaPay","Etisalat Cash"].includes(b.pay)||!Array.isArray(b.items)||!b.items.length||b.items.length>20)return r.status(400).json({error:"bad"});
+const x=await db.query("select id,data from products where id=any($1)",[b.items.map(i=>+i.id||0)]);let sub=0;const txt=[];
+for(const i of b.items){const p=x.rows.find(o=>o.id==i.id),n=Math.min(Math.max(parseInt(i.q)||1,1),5);if(!p||p.data.so)return r.status(400).json({error:"item"});sub+=p.data.p*n;txt.push(p.data.b+" "+p.data.n+" x"+n)}
+const tot=sub+fee,no="LE-"+Date.now().toString().slice(-6);
+await db.query("insert into orders(no,name,phone,gov,addr,pay,total,items) values($1,$2,$3,$4,$5,$6,$7,$8)",[no,String(b.n).replace(/[<>]/g,"").slice(0,100),b.ph,b.g,String(b.a).replace(/[<>]/g,"").slice(0,300),b.pay,tot,txt.join(", ")]);r.json({no,tot})});
+app.get("/api/admin/orders",auth,async(q,r)=>{const x=await db.query("select * from orders order by id desc limit 200");r.json(x.rows)});
+(async()=>{await db.query("create table if not exists products(id serial primary key,data jsonb not null)");
+await db.query("create table if not exists orders(id serial primary key,no text,name text,phone text,gov text,addr text,pay text,total int,items text,created timestamptz default now())");
+await db.query("create table if not exists images(pid int,idx int,data bytea,primary key(pid,idx))");
+const c=await db.query("select count(*)::int n from products");
+if(!c.rows[0].n)for(const p of require("./seed.json")){const{id,...d}=p;await db.query("insert into products(data) values($1)",[d])}
+app.listen(process.env.PORT||3000,()=>console.log("up"))})().catch(e=>{console.error(e);process.exit(1)});
